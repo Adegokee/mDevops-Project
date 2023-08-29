@@ -41,6 +41,15 @@ stage('Build') {
                 }
             }
     	}
+  stage('Kubernetes deployment app'){
+    steps {
+
+      withKubeConfig([credentialsId: 'kubelogin']){
+        sh('kubectl delete --all in devsecops')
+        sh('kubectl apply -f deployment.yaml --nameapace=devsecops')
+      }
+    }
+  }
 
 
   }
