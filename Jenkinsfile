@@ -45,7 +45,7 @@ stage('Build') {
     steps {
 
       withKubeConfig([credentialsId: 'kubelogin']){
-        sh('kubectl delete --all in devsecops')
+        sh('kubectl delete --all -n devsecops')
         sh('kubectl apply -f deployment.yaml --nameapace=devsecops')
       }
     }
