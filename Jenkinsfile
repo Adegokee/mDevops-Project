@@ -20,26 +20,26 @@ pipeline {
 
 
 // building docker image
-// stage('Build') { 
-//             steps { 
-//                withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
-//                  script{
-//                  app =  docker.build("adegokeimage")
-//                  }
-//                }
-//             }
-//     }
+stage('Build') { 
+            steps { 
+               withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
+                 script{
+                 app =  docker.build("adegokeimage")
+                 }
+               }
+            }
+    }
 
-	// stage('Push') {
-  //           steps {
-  //               script{
+	stage('Push') {
+            steps {
+                script{
 			
-  //                   docker.withRegistry("https://820254520822.dkr.ecr.us-east-1.amazonaws.com", "ecr:us-east-1:aws-credentials") 
-	// 		{
-  //                   app.push("latest")
-  //                   }
-  //               }
-  //           }
-  //   	}
+                    docker.withRegistry("https://820254520822.dkr.ecr.us-east-1.amazonaws.com", "ecr:us-east-1:aws-credentials") 
+			{
+                    app.push("latest")
+                    }
+                }
+            }
+    	}
   }
 }
